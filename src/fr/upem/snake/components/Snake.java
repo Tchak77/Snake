@@ -28,7 +28,7 @@ public class Snake implements Drawable, Updatable {
 	 * 
 	 */
 	public Snake() {
-		this.head = new MyEllipse(200, 200, 10);
+		this.head = new Ellipse2D.Float(200, 200, radius, radius);
 		this.parts = new ArrayList<Ellipse2D>();
 		this.parts.add(head);
 		this.speed = 2;
