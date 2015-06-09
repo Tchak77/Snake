@@ -43,6 +43,10 @@ public class Main {
 	          Event event = context.pollOrWaitEvent(30);
 		      snake.draw(context);
 		      snake.update();
+		      if(snake.collidesWithBody()){
+		    	  context.exit(0);
+	              return;
+		      }
 	          if (event == null) {
 		    	  continue;
 		      }
