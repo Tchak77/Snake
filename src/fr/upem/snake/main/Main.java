@@ -11,7 +11,8 @@ import fr.umlv.zen5.Application;
 import fr.umlv.zen5.Event;
 import fr.umlv.zen5.KeyboardKey;
 import fr.umlv.zen5.ScreenInfo;
-import fr.umlv.zen5.Event.Action;import fr.upem.snake.components.Snake;
+import fr.umlv.zen5.Event.Action;
+import fr.upem.snake.components.Snake;
 
 
 /**
@@ -23,6 +24,7 @@ public class Main {
 	/**
 	 * @param args
 	 */
+	
 	public static void main(String[] args) {
 	    Application.run(Color.ORANGE, context -> {	        
 	        // get the size of the screen
@@ -37,41 +39,27 @@ public class Main {
 	        });
 	        
 	        Snake snake = new Snake();
-	        for(;;) {
+	        for(;;){
+	          Event event = context.pollOrWaitEvent(30);
 		      snake.draw(context);
 		      snake.update();
-	          Event event = context.pollOrWaitEvent(50);
-		      if (event != null) {
-		    	  Action action = event.getAction();
-		    	  if (action == Action.KEY_PRESSED) {
-			    	  KeyboardKey key = event.getKey();
-			    	  if(key == KeyboardKey.D){
-				    	  while(action != Action.KEY_RELEASED){
-				    		  snake.rotateRight();
-				    		  snake.draw(context);
-						      snake.update();
-						      event = context.pollOrWaitEvent(10);
-						      if(event != null)
-						    	  action = event.getAction();
-				    	  }
-			    	  }else if(key == KeyboardKey.Q){
-				    	  while(action != Action.KEY_RELEASED){
-				    		  snake.rotateLeft();
-				    		  snake.draw(context);
-						      snake.update();
-						      event = context.pollOrWaitEvent(10);
-						      if(event != null)
-						    	  action = event.getAction();
-				    	  }
+	          if (event == null) {
+		    	  continue;
+		      }
+		      if(event.getAction().equals(Action.KEY_PRESSED)){
+		    	  KeyboardKey key = event.getKey();
+		    	  if(key != null){
+			    	  System.out.println(key);
+			    	  if(key.equals(KeyboardKey.RIGHT)){
+			    		  snake.rotateRight();
+			    	  }else if(key.equals(KeyboardKey.LEFT)){
+			    		  snake.rotateLeft();
+			    	  }else if(key.equals(KeyboardKey.M)){
+			              context.exit(0);
+			              return;
 			    	  }
-				      snake.rotateLeft();
-		    		  /*System.out.println("abort abort !");
-		    		  context.exit(0);
-		    		  return;*/
 		    	  }
-		          System.out.println(event);
-	          }
-
+		      }
 	        }
 	      });
 
