@@ -3,7 +3,6 @@
  */
 package fr.upem.snake.components;
 
-import java.awt.Point;
 import java.util.ArrayList;
 
 import fr.umlv.zen5.ApplicationContext;
