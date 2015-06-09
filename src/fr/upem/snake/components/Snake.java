@@ -36,9 +36,16 @@ public class Snake implements Drawable, Updatable {
 		this.radius = 10;
 	}
 	
+	public void setSpeed(float speed){
+		this.speed = speed;
+	}
+	
 	public void rotateLeft(){
 		System.out.println("Rotate left");
 		alpha -= 0.2;
+	}
+	public ArrayList<Ellipse2D> getParts(){
+		return this.parts;
 	}
 	
 	public void rotateRight(){
@@ -46,7 +53,10 @@ public class Snake implements Drawable, Updatable {
 		alpha += 0.2;
 	}
 	
-	public boolean collidesWithBody(){
+	public boolean collides(float width, float height){
+		//if(head.getCenterX() <= 0 || head.getCenterX() >= width || head.getCenterY() <= 0 || head.getCenterY() >= height)
+		if(head.getCenterX() - head.getWidth()/2 <= 0 || head.getCenterX() + head.getWidth()/2 >= width || head.getCenterY() - head.getHeight()/2 <= 0 || head.getCenterY() + head.getHeight()/2 >= height)
+			return true;
 		for(int i=0;i<parts.size()-10;i++){
 			if(head.intersects(parts.get(i).getBounds2D())){
 				System.out.println("COLLISION");
@@ -65,6 +75,10 @@ public class Snake implements Drawable, Updatable {
 		this.head = newE;
 		this.parts.add(head);
 	}
+	public void updateDash(){
+		
+		this.head = new Ellipse2D.Float((float)(head.getX()+speed*Math.cos(alpha)), (float)(head.getY()+speed*Math.sin(alpha)), radius, radius);
+	}
 
 	/* (non-Javadoc)
 	 * @see fr.upem.snake.interfaces.Drawable#draw(fr.umlv.zen5.ApplicationContext)
@@ -76,5 +90,6 @@ public class Snake implements Drawable, Updatable {
 	        graphics.fill(head);
 		});
 	}
+
 
 }

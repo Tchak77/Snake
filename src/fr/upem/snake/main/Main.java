@@ -13,6 +13,7 @@ import fr.umlv.zen5.KeyboardKey;
 import fr.umlv.zen5.ScreenInfo;
 import fr.umlv.zen5.Event.Action;
 import fr.upem.snake.components.Snake;
+import fr.upem.snake.components.Bonus;
 
 
 /**
@@ -40,12 +41,14 @@ public class Main {
 	        
 	        Snake snake = new Snake();
 	        for(;;){
+	          
 	          Event event = context.pollOrWaitEvent(30);
 		      snake.draw(context);
 		      snake.update();
-		      if(snake.collidesWithBody()){
+		      if(snake.collides(width, height)){
 		    	  context.exit(0);
 	              return;
+		    	  
 		      }
 	          if (event == null) {
 		    	  continue;
