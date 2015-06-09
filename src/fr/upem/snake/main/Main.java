@@ -13,7 +13,6 @@ import fr.umlv.zen5.KeyboardKey;
 import fr.umlv.zen5.ScreenInfo;
 import fr.umlv.zen5.Event.Action;
 import fr.upem.snake.components.Snake;
-import fr.upem.snake.components.Bonus;
 
 
 /**
@@ -40,8 +39,15 @@ public class Main {
 	        });
 	        
 	        Snake snake = new Snake();
+	        long chrono = java.lang.System.currentTimeMillis() ;
 	        for(;;){
 	          
+	          if(java.lang.System.currentTimeMillis() - chrono > 5000){//On ajoute un bonus toutes les 15sec
+	        	  snake.addBonus(width, height);
+	        	  snake.drawBonus(context);
+	        	  chrono = java.lang.System.currentTimeMillis();
+	        	  
+	          }
 	          Event event = context.pollOrWaitEvent(30);
 		      snake.draw(context);
 		      snake.update();

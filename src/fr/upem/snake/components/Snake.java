@@ -6,6 +6,7 @@ package fr.upem.snake.components;
 import java.awt.Color;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import fr.umlv.zen5.ApplicationContext;
 import fr.upem.snake.interfaces.Drawable;
@@ -24,6 +25,7 @@ public class Snake implements Drawable, Updatable {
 	private float alpha; /*Angle de direction*/
 	private float radius;
 	
+	private final LinkedList<Bonus> bonus;
 	/**
 	 * 
 	 */
@@ -34,11 +36,13 @@ public class Snake implements Drawable, Updatable {
 		this.speed = 2;
 		this.alpha = 0;
 		this.radius = 10;
+		this.bonus = new LinkedList<Bonus>();
 	}
 	
 	public void setSpeed(float speed){
 		this.speed = speed;
 	}
+	
 	
 	public void rotateLeft(){
 		System.out.println("Rotate left");
@@ -91,5 +95,62 @@ public class Snake implements Drawable, Updatable {
 		});
 	}
 
+	public void addBonus(float width, float height){
+		bonus.add(new Bonus(width,height));
+	}
+	
+	public void applyBonus(Bonus b, ApplicationContext context, float width, float height){
+		
+		switch(b.getValue()){
+		
+		case(0):
+			b.erase(this, context, width, height);
+		break;
+		
+		case(1):
+			b.dash(this, context, width, height);
+		break;
+		
+		case(2):
+			b.slow(this, context, width, height);
+		break;
+		
+		case(3):
+			b.fast(this, context, width, height);
+		}
+	}
+	public void drawBonus(ApplicationContext context){
+		Bonus b = bonus.getLast();
+		
+		switch(b.getValue()){
+		
+		case(0):
+			context.renderFrame(graphics -> {
+		        graphics.setColor(Color.RED);
+		        graphics.fillOval(b.getX(), b.getY(), 20, 20);
+			});
+		break;
+		
+		case(1):
+			context.renderFrame(graphics -> {
+		        graphics.setColor(Color.BLUE);
+		        graphics.fillOval(b.getX(), b.getY(), 20, 20);
+			});
+		break;
+		
+		case(2):
+			context.renderFrame(graphics -> {
+		        graphics.setColor(Color.GREEN);
+		        graphics.fillOval(b.getX(), b.getY(), 20, 20);
+			});
+		break;
+		
+		case(3):
+			context.renderFrame(graphics -> {
+		        graphics.setColor(Color.WHITE);
+		        graphics.fillOval(b.getX(), b.getY(), 20, 20);
+			});
+		}
+	}
 
 }

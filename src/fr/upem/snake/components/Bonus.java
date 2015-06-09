@@ -3,6 +3,7 @@ package fr.upem.snake.components;
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 
+
 import fr.umlv.zen5.ApplicationContext;
 import fr.umlv.zen5.Event;
 import fr.umlv.zen5.KeyboardKey;
@@ -10,9 +11,28 @@ import fr.umlv.zen5.Event.Action;
 
 public class Bonus {
 
+	private int x, y, value;
 	
 	
-	public static void erase(Snake s, ApplicationContext context, float width, float height){
+	public Bonus(float width, float height){
+		
+		value =(int) ( Math.random() *4);
+		x = (int) (Math.random() * width);
+		y = (int) (Math.random() * height);
+		System.out.println("New Bonus x:"+x+" y: "+y);
+	}
+	
+	public int getX(){
+		return this.x;
+	}
+	public int getY(){
+		return this.y;
+	}
+	public int getValue(){
+		return this.value;
+	}
+	
+	public void erase(Snake s, ApplicationContext context, float width, float height){
 		
 		
 		s.getParts().clear();
@@ -22,7 +42,7 @@ public class Bonus {
 	        });
 	}
 	
-	public static void dash(Snake snake, ApplicationContext context, float width, float height){
+	public void dash(Snake snake, ApplicationContext context, float width, float height){
 		
 		long chrono = java.lang.System.currentTimeMillis() ; 
 		int compteur =0;
@@ -62,7 +82,7 @@ public class Bonus {
 	        }	
 	}
 	
-	public static void slow (Snake snake, ApplicationContext context, float width, float height){
+	public void slow (Snake snake, ApplicationContext context, float width, float height){
 		long chrono = java.lang.System.currentTimeMillis() ; 
 		snake.setSpeed(1);
 		 while( java.lang.System.currentTimeMillis() - chrono <= 10000){ //10 secondes de bonus lenteur
@@ -99,7 +119,7 @@ public class Bonus {
 	}
 	
 	
-	public static void fast (Snake snake, ApplicationContext context, float width, float height){
+	public void fast (Snake snake, ApplicationContext context, float width, float height){
 		long chrono = java.lang.System.currentTimeMillis() ; 
 		snake.setSpeed(4);
 		 while( java.lang.System.currentTimeMillis() - chrono <= 10000){ //10 secondes de bonus lenteur
