@@ -152,5 +152,20 @@ public class Snake implements Drawable, Updatable {
 			});
 		}
 	}
+	
+	public void collideBonus(ApplicationContext context, float width, float height){
+		
+		for(Bonus b: bonus){
+			if(head.intersects(b.getX()-10, b.getY()-10, 20, 20)){
+				context.renderFrame(graphics -> {
+			        graphics.setColor(Color.ORANGE);
+			        graphics.fillOval(b.getX(), b.getY(), 20, 20);
+				});
+				applyBonus(b,context, width, height);
+				bonus.remove(b);
+
+			}
+		}
+	}
 
 }

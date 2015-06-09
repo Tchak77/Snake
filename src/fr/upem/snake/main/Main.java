@@ -42,7 +42,7 @@ public class Main {
 	        long chrono = java.lang.System.currentTimeMillis() ;
 	        for(;;){
 	          
-	          if(java.lang.System.currentTimeMillis() - chrono > 5000){//On ajoute un bonus toutes les 15sec
+	          if(java.lang.System.currentTimeMillis() - chrono > 5000){//On ajoute un bonus toutes les 5sec
 	        	  snake.addBonus(width, height);
 	        	  snake.drawBonus(context);
 	        	  chrono = java.lang.System.currentTimeMillis();
@@ -56,6 +56,7 @@ public class Main {
 	              return;
 		    	  
 		      }
+		      snake.collideBonus(context, width, height);
 	          if (event == null) {
 		    	  continue;
 		      }
