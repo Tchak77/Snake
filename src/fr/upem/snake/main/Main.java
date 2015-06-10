@@ -4,7 +4,12 @@
 package fr.upem.snake.main;
 
 import java.awt.Color;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+
+
+import java.util.ArrayList;
+
 
 
 import fr.umlv.zen5.Application;
@@ -13,6 +18,8 @@ import fr.umlv.zen5.KeyboardKey;
 import fr.umlv.zen5.ScreenInfo;
 import fr.umlv.zen5.Event.Action;
 import fr.upem.snake.components.Snake;
+import fr.upem.snake.bonus.Bonus;import fr.upem.snake.bonus.BonusFactory;
+
 
 
 /**
@@ -21,6 +28,7 @@ import fr.upem.snake.components.Snake;
  */
 public class Main {
 
+	
 	/**
 	 * @param args
 	 */
@@ -32,6 +40,7 @@ public class Main {
 	        float width = screenInfo.getWidth();
 	        float height = screenInfo.getHeight();
 	        System.out.println("size of the screen (" + width + " x " + height + ")");
+	        ArrayList<Bonus> bonus = new ArrayList<Bonus>();
 	        
 	        context.renderFrame(graphics -> {
 	          graphics.setColor(Color.ORANGE);
@@ -41,22 +50,31 @@ public class Main {
 	        Snake snake = new Snake();
 	        long chrono = java.lang.System.currentTimeMillis() ;
 	        for(;;){
-	          
-	          if(java.lang.System.currentTimeMillis() - chrono > 5000 && snake.getBonus().size()<=10){//On ajoute un bonus toutes les 5sec et 10 bonus sur la carte maximum
-	        	  snake.addBonus(width, height);
-	        	  snake.drawBonus(context);
+	          if(java.lang.System.currentTimeMillis() - chrono > 5000 && bonus.size() < 9){//On ajoute un bonus toutes les 5sec
+	        	  bonus.add(BonusFactory.getRandomBonus(context));
 	        	  chrono = java.lang.System.currentTimeMillis();
-	        	  
 	          }
-	          Event event = context.pollOrWaitEvent(50);
+	          Event event = context.pollOrWaitEvent(30);
 		      snake.draw(context);
 		      snake.update();
 		      if(snake.collides(width, height)){
 		    	  context.exit(0);
 	              return;
-		    	  
 		      }
-		      snake.collideBonus(context, width, height);
+		      for(int i=0;i<bonus.size();i++){
+		    	  if(snake.getHead().intersects(bonus.get(i).getShape().getBounds2D())){
+		    		  bonus.get(i).applyBonus(snake, context);
+		    		  Ellipse2D e = bonus.get(i).getShape();
+		    		  context.renderFrame(graphics -> {
+		    		        graphics.setColor(Color.ORANGE);
+		    		        graphics.fill(e);});
+		    		  bonus.remove(i);
+		    	  }
+		      }
+		      
+		      for(Bonus b : bonus){
+		    	  b.draw(context);
+		      }
 	          if (event == null) {
 		    	  continue;
 		      }
