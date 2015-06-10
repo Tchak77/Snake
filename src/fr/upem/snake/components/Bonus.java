@@ -35,11 +35,12 @@ public class Bonus {
 	public void erase(Snake s, ApplicationContext context, float width, float height){
 		
 		
-		s.getParts().clear();
+		
 		context.renderFrame(graphics -> {
 	          graphics.setColor(Color.ORANGE);
 	          graphics.fill(new  Rectangle2D.Float(0, 0, width, height));
 	        });
+		s.getParts().clear();
 	}
 	
 	public void dash(Snake snake, ApplicationContext context, float width, float height){

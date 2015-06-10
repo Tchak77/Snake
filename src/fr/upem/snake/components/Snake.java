@@ -43,6 +43,10 @@ public class Snake implements Drawable, Updatable {
 		this.speed = speed;
 	}
 	
+	public LinkedList<Bonus> getBonus(){
+		return this.bonus;
+	}
+	
 	
 	public void rotateLeft(){
 		System.out.println("Rotate left");
@@ -160,10 +164,11 @@ public class Snake implements Drawable, Updatable {
 				context.renderFrame(graphics -> {
 			        graphics.setColor(Color.ORANGE);
 			        graphics.fillOval(b.getX(), b.getY(), 20, 20);
-				});
-				applyBonus(b,context, width, height);
-				bonus.remove(b);
 
+				});
+		        applyBonus(b,context, width, height);
+		        bonus.remove(b);
+		        break;
 			}
 		}
 	}

@@ -42,13 +42,13 @@ public class Main {
 	        long chrono = java.lang.System.currentTimeMillis() ;
 	        for(;;){
 	          
-	          if(java.lang.System.currentTimeMillis() - chrono > 5000){//On ajoute un bonus toutes les 5sec
+	          if(java.lang.System.currentTimeMillis() - chrono > 5000 && snake.getBonus().size()<=10){//On ajoute un bonus toutes les 5sec et 10 bonus sur la carte maximum
 	        	  snake.addBonus(width, height);
 	        	  snake.drawBonus(context);
 	        	  chrono = java.lang.System.currentTimeMillis();
 	        	  
 	          }
-	          Event event = context.pollOrWaitEvent(30);
+	          Event event = context.pollOrWaitEvent(50);
 		      snake.draw(context);
 		      snake.update();
 		      if(snake.collides(width, height)){
