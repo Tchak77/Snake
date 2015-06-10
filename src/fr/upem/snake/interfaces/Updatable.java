@@ -13,7 +13,7 @@ package fr.upem.snake.interfaces;
  */
 public interface Updatable {
 	/**
-	 * A loop that should be executed in a loop
+	 * A method that should be called in a loop to update an object which implements this interface.
 	 * to make an object alive.
 	 */
 	public void update();

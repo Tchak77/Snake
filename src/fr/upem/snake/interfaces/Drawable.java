@@ -15,7 +15,7 @@ import fr.umlv.zen5.ApplicationContext;
  */
 public interface Drawable {
 	/**
-	 * 
+	 * Draw the object which implements this interface in a context.
 	 * @param context the context which runs the main loop.
 	 */
 	public void draw(ApplicationContext context);
