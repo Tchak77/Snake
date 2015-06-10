@@ -10,6 +10,10 @@ import fr.umlv.zen5.ScreenInfo;
  * @author MIGNON Frederic - TCHAKMAKDJIAN Kevin
  *
  */
+/**
+ * A factory that creates Bonus.
+ *
+ */
 public final class BonusFactory {
 
 	/**

@@ -9,6 +9,10 @@ import fr.umlv.zen5.ApplicationContext;
  * @author MIGNON Frederic - TCHAKMAKDJIAN Kevin
  *
  */
+/**
+ * An interface used for every object that should be drown.
+ *
+ */
 public interface Drawable {
 	/**
 	 * 

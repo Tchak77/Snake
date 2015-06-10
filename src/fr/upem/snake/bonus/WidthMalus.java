@@ -15,7 +15,7 @@ import fr.upem.snake.components.Snake;
  */
 
 /**
- * A bonus which decreases the width of a snake.
+ * A malus which decreases the width of a snake.
  *
  */
 public class WidthMalus extends Bonus {

@@ -20,10 +20,15 @@ import fr.upem.snake.bonus.BonusFactory;
  * @author MIGNON Frederic - TCHAKMAKDJIAN Kevin
  *
  */
+/**
+ * The main class used to run the game.
+ *
+ */
 public class Main {
 
 	/**
-	 * @param args 
+	 * The main method. The args have no effect here.
+	 * @param args the args given at the execution.
 	 */
 	public static void main(String[] args) {
 		Application.run(Color.ORANGE, context -> {
