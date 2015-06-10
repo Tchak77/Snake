@@ -10,17 +10,19 @@ import fr.umlv.zen5.ApplicationContext;
 import fr.upem.snake.components.Snake;
 
 /**
- * @author MIGNON Frederic
+ * @author MIGNON Frederic - TCHAKMAKDJIAN Kevin
  *
  */
 public class SpeedBonus extends Bonus {
 
 	public SpeedBonus(float x, float y) {
-		this.ellipse = new Ellipse2D.Float(x-10, y-10, 20, 20);
+		this.ellipse = new Ellipse2D.Float(x - 10, y - 10, 20, 20);
 		this.color = Color.BLUE;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.upem.snake.bonus.Bonus#applyBonus(fr.upem.snake.components.Snake)
 	 */
 	@Override

@@ -11,25 +11,25 @@ import fr.upem.snake.components.Snake;
 import fr.upem.snake.interfaces.Drawable;
 
 /**
- * @author MIGNON Frederic
+ * @author MIGNON Frederic - TCHAKMAKDJIAN Kevin
  *
  */
-public abstract class Bonus implements Drawable{
+public abstract class Bonus implements Drawable {
 
 	protected Ellipse2D.Float ellipse;
 	protected Color color;
-			
+
 	public abstract void applyBonus(Snake s, ApplicationContext context);
-	
-	public Ellipse2D getShape(){
+
+	public Ellipse2D getShape() {
 		return this.ellipse;
 	}
-	
+
 	@Override
 	public void draw(ApplicationContext context) {
 		context.renderFrame(graphics -> {
-	        graphics.setColor(color);
-	        graphics.fill(ellipse);
+			graphics.setColor(color);
+			graphics.fill(ellipse);
 		});
 	}
 
