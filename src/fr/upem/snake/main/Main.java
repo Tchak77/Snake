@@ -23,9 +23,8 @@ import fr.upem.snake.bonus.BonusFactory;
 public class Main {
 
 	/**
-	 * @param args
+	 * @param args 
 	 */
-
 	public static void main(String[] args) {
 		Application.run(Color.ORANGE, context -> {
 			// get the size of the screen

@@ -15,8 +15,16 @@ import fr.upem.snake.components.Snake;
  * @author MIGNON Frederic - TCHAKMAKDJIAN Kevin
  *
  */
+
+/**
+* A bonus which cleans the area.
+**/
 public class CleanBonus extends Bonus {
 
+	/**
+	 * @param x the x coord to draw at.
+	 * @param y the y coord to draw at.
+	 */
 	public CleanBonus(float x, float y) {
 		this.ellipse = new Ellipse2D.Float(x - 10, y - 10, 20, 20);
 		this.color = Color.GREEN;
@@ -29,7 +37,6 @@ public class CleanBonus extends Bonus {
 	 */
 	@Override
 	public void applyBonus(Snake s, ApplicationContext context) {
-
 		s.getParts().clear();
 		ScreenInfo screenInfo = context.getScreenInfo();
 		float width = screenInfo.getWidth();
